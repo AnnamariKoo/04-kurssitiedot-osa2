@@ -1,3 +1,12 @@
+const Course = (props) => {
+  return (
+    <>
+      <Header name={props.course.name} />
+      <Content parts={props.course.parts} />
+    </>
+  );
+};
+
 const Header = (props) => {
   console.log(props);
   return (
@@ -8,24 +17,24 @@ const Header = (props) => {
 };
 
 const Content = (props) => {
+  console.log("props in Content (toivottavasti vainn parts?)");
   console.log(props);
+
   return (
-    <>
-      <Part part={props.parts[0]} />
-      <Part part={props.parts[1]} />
-      <Part part={props.parts[2]} />
-    </>
+    <ul>
+      {props.parts.map((part) => (
+        <Part key={part.id} part={part} />
+      ))}
+    </ul>
   );
 };
 
 const Part = (props) => {
   console.log(props);
   return (
-    <>
-      <p>
-        {props.part.name} {props.part.exercises}
-      </p>
-    </>
+    <li>
+      {props.part.name} {props.part.exercises}
+    </li>
   );
 };
 
@@ -46,27 +55,29 @@ const Total = (props) => {
 const App = () => {
   const course = {
     name: "Half Stack application development",
+    id: 1,
     parts: [
       {
         name: "Fundamentals of React",
         exercises: 10,
+        id: 1,
       },
       {
         name: "Using props to pass data",
         exercises: 7,
+        id: 2,
       },
       {
         name: "State of a component",
         exercises: 14,
+        id: 3,
       },
     ],
   };
 
   return (
     <div>
-      <Header name={course.name} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <Course course={course} />
     </div>
   );
 };
