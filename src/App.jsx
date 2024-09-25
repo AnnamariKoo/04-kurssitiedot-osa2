@@ -3,6 +3,7 @@ const Course = (props) => {
     <>
       <Header name={props.course.name} />
       <Content parts={props.course.parts} />
+      <Total parts={props.course.parts} />
     </>
   );
 };
@@ -39,15 +40,13 @@ const Part = (props) => {
 };
 
 const Total = (props) => {
-  console.log(props);
+  let totalExcercises = 0;
+  for (let i = 0; i < props.parts.length; i++) {
+    totalExcercises += props.parts[i].exercises;
+  }
   return (
     <>
-      <p>
-        Number of exercises{" "}
-        {props.parts[0].exercises +
-          props.parts[1].exercises +
-          props.parts[2].exercises}
-      </p>
+      <p>Number of exercises {totalExcercises}</p>
     </>
   );
 };
@@ -71,6 +70,11 @@ const App = () => {
         name: "State of a component",
         exercises: 14,
         id: 3,
+      },
+      {
+        name: "Redux",
+        exercises: 11,
+        id: 4,
       },
     ],
   };
