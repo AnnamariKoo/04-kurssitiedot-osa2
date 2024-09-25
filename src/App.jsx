@@ -1,3 +1,5 @@
+import "./App.css";
+
 const Course = (props) => {
   return (
     <>
@@ -40,13 +42,14 @@ const Part = (props) => {
 };
 
 const Total = (props) => {
-  let totalExcercises = 0;
-  for (let i = 0; i < props.parts.length; i++) {
-    totalExcercises += props.parts[i].exercises;
-  }
+  const totalExcercises = props.parts.reduce(
+    (summa, part) => summa + part.exercises,
+    0
+  );
+
   return (
     <>
-      <p>Number of exercises {totalExcercises}</p>
+      <p>Total of exercises {totalExcercises}</p>
     </>
   );
 };
