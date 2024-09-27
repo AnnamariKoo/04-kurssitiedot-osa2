@@ -26,10 +26,10 @@ li {
   padding: 0 1rem;
 }
 
-#borderline {
-  border: 0.3px solid black;
+.borderline {
+  border-bottom: 0.3px solid black;
 }
 
-#borderline:last-child {
+.borderline:last-child {
   border: none;
 }
